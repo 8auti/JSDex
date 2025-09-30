@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSDex - A JavaScript-powered Pokédex</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/gengar.png" alt="JSDex Logo" class="header-logo">
+            <a href="/" id="nombre-principal">JSDex</a>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Buscar por nombre o número...">
+            <button class="search-btn" onclick="searchPokemon()">Buscar</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Explora el Mundo Pokémon</h1>
+        </div>
+
+        <div>
+            <div id="pokemon-grid"></div>
+        </div>
+
+        <button id="loadMoreBtn" class="load-more" onclick="loadMorePokemon()">Cargar Más Pokémon</button>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <img src="img/gengar.png" alt="Gengar Pokemon" class="footer-logo">
+            </div>
+
+            <div class="footer-center">
+                <p>
+                    JSDex no está afiliado con <a href="https://www.pokemon.com/" target="_blank">Pokémon</a> ni con <a href="https://www.nintendo.com/" target="_blank">Nintendo</a>.  
+                    Datos provistos por <a href="https://pokeapi.co/" target="_blank">PokéAPI</a>.
+                </p>
+            </div>
+
+            <div class="footer-right">
+                <a href="https://github.com/8auti">Github</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="card.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
