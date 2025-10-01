@@ -5,12 +5,17 @@ let shinyView = false
 
 async function openModal(pokemon){
     myModal.showModal()
-    fillModal(pokemon)
+
     const pokemonSpecies = await fetchSpecies(pokemon.name)
-    console.log(pokemonSpecies);
+
+    // Filtrar forma actual
+    const alternate_forms = pokemonSpecies.varieties.filter(v => {  return v.pokemon.name !== pokemon.name});
+    pokemon.alternate_forms = alternate_forms
     
     modalPokemon = pokemon
     shinyView = false
+
+    fillModal(pokemon)
 }
 
 function closeModal(){
@@ -45,6 +50,14 @@ function fillModal(pokemon) {
     // Imagen
     document.getElementById('pokemonImg').src = pokemon.sprites.other['home'].front_default;
     document.getElementById('pokemonImg').alt = pokemon.name;
+
+    // Variantes
+    const varietiesHTML = pokemon.alternate_forms.map(v => 
+        `<button class="varietie-btn">
+            ${v.pokemon.name.charAt(0).toUpperCase() + v.pokemon.name.slice(1)}
+         </button>`
+    ).join('');
+    document.getElementById('varieties-list').innerHTML = varietiesHTML;
     
     // Tipos
     const typesHTML = pokemon.types.map(t => 
