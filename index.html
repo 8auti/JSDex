@@ -59,7 +59,15 @@
             
             <!-- Header: Nombre y Número -->
             <div class="modal-header">
-                <h2 class="modal-name" id="pokemonName">Nombre</h2>
+                <div class="header-info">
+                    <div class="name-with-icon">
+                        <h2 class="modal-name" id="pokemonName">Nombre</h2>
+                        <span id="form-badge">
+                            <img id="form-icon" src="img/icon.png" alt="icon">
+                        </span>
+                    </div>
+                    <div id="varieties-list"></div>
+                </div>
                 <span class="modal-number" id="pokemonNumber">#0000</span>
             </div>
 
@@ -69,18 +77,17 @@
                 <div class="info-grid">
                     <!-- Columna 1: Imagen y Tipos -->
                     <section class="image-section">
-                        
-                            <!-- Nueva barra de iconos -->
-                            <div class="icon-bar">
-                                <button onclick="toggleShiny()" class="icon-btn">
-                                    <img src="img/shiny-stars.png" alt="Shiny View">
-                                </button>
+
+                        <!-- Contenedor de imagen con botón shiny -->
+                        <div class="modal-image-container">
+                            <!-- Botón shiny en la esquina -->
+                            <button onclick="toggleShiny()" class="shiny-btn" title="Ver versión shiny">
+                                <img src="img/icons/shiny-stars.png" alt="Shiny">
+                            </button>
+                            
+                            <div class="modal-image">
+                                <img id="pokemonImg" src="" alt="Pokemon">
                             </div>
-
-                        <div id="varieties-list"></div>
-
-                        <div class="modal-image">
-                            <img id="pokemonImg" src="" alt="Pokemon">
                         </div>
                         
                         <div class="type-badges" id="typeBadges">

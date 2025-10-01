@@ -7,10 +7,11 @@ async function openModal(pokemon){
     myModal.showModal()
 
     const pokemonSpecies = await fetchSpecies(pokemon.name)
+    if (pokemonSpecies) {
+        //const alternate_forms = pokemonSpecies.varieties.filter(v => {  return v.pokemon.name !== pokemon.name});
+        pokemon.alternate_forms = pokemonSpecies.varieties
+    }
 
-    // Filtrar forma actual
-    const alternate_forms = pokemonSpecies.varieties.filter(v => {  return v.pokemon.name !== pokemon.name});
-    pokemon.alternate_forms = alternate_forms
     
     modalPokemon = pokemon
     shinyView = false
@@ -22,7 +23,14 @@ function closeModal(){
     myModal.close()
 }
 
-function openModalWithId(id){
+async function openModalWithName(name) {
+    const pokemon = await fetchPokemon(name)
+    if (pokemon){
+        openModal(pokemon)
+    }
+}
+
+async function openModalWithId(id){
     const pokemon = loadedPokemon[id-1]
     if (pokemon){
         openModal(pokemon)
@@ -47,17 +55,28 @@ function fillModal(pokemon) {
     document.getElementById('pokemonName').textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     document.getElementById('pokemonNumber').textContent = `#${String(pokemon.id).padStart(4, '0')}`;
     
+    if (!pokemon.is_default){
+        console.log(pokemon.name);
+        
+        const hasMega = pokemon.name.includes('-mega')
+        document.getElementById('form-icon').src = `img/icons/${ hasMega ? 'mega_stone' : 'gigantamax' }.png`
+    } else {
+        document.getElementById('form-icon').src = "img/icons/pokemon_other.png"
+    }
+
     // Imagen
     document.getElementById('pokemonImg').src = pokemon.sprites.other['home'].front_default;
     document.getElementById('pokemonImg').alt = pokemon.name;
 
-    // Variantes
-    const varietiesHTML = pokemon.alternate_forms.map(v => 
-        `<button class="varietie-btn">
-            ${v.pokemon.name.charAt(0).toUpperCase() + v.pokemon.name.slice(1)}
-         </button>`
-    ).join('');
-    document.getElementById('varieties-list').innerHTML = varietiesHTML;
+        // Variantes
+    if (pokemon.alternate_forms) {
+        const varietiesHTML = pokemon.alternate_forms.map(v => 
+            `<button class="varietie-btn" onclick="openModalWithName('${ v.pokemon.name }')">
+                ${v.pokemon.name.charAt(0).toUpperCase() + v.pokemon.name.slice(1)}
+            </button>`
+        ).join('');
+        document.getElementById('varieties-list').innerHTML = varietiesHTML;
+    }
     
     // Tipos
     const typesHTML = pokemon.types.map(t => 

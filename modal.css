@@ -106,12 +106,40 @@
     flex-shrink: 0;
 }
 
+.header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .modal-name {
     font-size: 2rem;
     font-weight: bold;
     margin: 0;
     text-transform: capitalize;
     color: #333;
+}
+.name-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#form-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(102, 126, 234, 0.15);
+    border-radius: 50%;
+    padding: 6px;
+}
+
+#form-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .modal-number {
@@ -143,11 +171,40 @@
    COLUMNA 1: IMAGEN Y TIPOS
    ======================================== */
 
+#varieties-list {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.varietie-btn {
+    padding: 4px 12px;
+    background: rgba(102, 126, 234, 0.15);
+    color: #667eea;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: capitalize;
+}
+
+.varietie-btn:hover {
+    background: rgba(102, 126, 234, 0.25);
+    border-color: #667eea;
+}
+
 .image-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
+}
+
+.modal-image-container {
+    position: relative;
+    width: 100%;
 }
 
 .modal-image {
@@ -166,6 +223,59 @@
     height: 100%;
     object-fit: contain;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* Botón shiny en la esquina superior derecha */
+.shiny-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shiny-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: none; /* Importante: anula el filter del .modal-image img */
+}
+
+.shiny-btn:hover {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: rgba(255, 215, 0, 0.8);
+    transform: rotate(15deg) scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.shiny-btn:active {
+    transform: rotate(15deg) scale(0.95);
+}
+
+/* Estado activo cuando está en modo shiny */
+.shiny-btn.active {
+    background: rgba(255, 215, 0, 0.3);
+    border-color: rgba(255, 215, 0, 1);
+    animation: shinyPulse 1.5s infinite;
+}
+
+@keyframes shinyPulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
 }
 
 .type-badges {
