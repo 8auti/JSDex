@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSDex - A JavaScript-powered Pokédex</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="logo">
             <img src="img/gengar.png" alt="JSDex Logo" class="header-logo">
             <a href="/" id="nombre-principal">JSDex</a>
@@ -44,10 +45,82 @@
             </div>
 
             <div class="footer-right">
-                <a href="https://github.com/8auti">Github</a>
+                <a href="https://github.com/8auti/JSDex">Github</a>
             </div>
         </div>
     </footer>
+
+    <!-- Modal Overlay -->
+    <dialog class="modal-overlay" id="modal" onclick="closeModalOnOutside(event)">
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <!-- Botón Cerrar -->
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            
+            <!-- Header: Nombre y Número -->
+            <div class="modal-header">
+                <h2 class="modal-name" id="pokemonName">Nombre</h2>
+                <span class="modal-number" id="pokemonNumber">#0000</span>
+            </div>
+
+            <!-- Main Content -->
+            <div class="modal-body">
+                <!-- Grid de 3 columnas -->
+                <div class="info-grid">
+                    <!-- Columna 1: Imagen y Tipos -->
+                    <section class="image-section">
+                        <div class="modal-image">
+                            <img id="pokemonImg" src="" alt="Pokemon">
+                        </div>
+                        
+                        <div class="type-badges" id="typeBadges">
+                            <!-- Los tipos se insertarán aquí con JS -->
+                        </div>
+
+                        <audio controls class="pokemon-cry" id="pokemonCry">
+                            <source id="crySource" src="" type="audio/ogg">
+                        </audio>
+                    </section>
+
+                    <!-- Columna 2: Habilidades y Dimensiones -->
+                    <section class="info-section">
+                        <div class="abilities">
+                            <h3>Abilities</h3>
+                            <ul class="abilities-list" id="abilitiesList">
+                                <!-- Las habilidades se insertarán aquí con JS -->
+                            </ul>
+                        </div>
+
+                        <div class="dimensions">
+                            <h3>Dimensiones</h3>
+                            <dl class="dimensions-list">
+                                <dt>Altura:</dt>
+                                <dd id="pokemonHeight">0 m</dd>
+                                <dt>Peso:</dt>
+                                <dd id="pokemonWeight">0 kg</dd>
+                            </dl>
+                        </div>
+                    </section>
+
+                    <!-- Columna 3: Stats -->
+                    <section class="stats-section">
+                        <h3>Base Stats</h3>
+                        <div class="stats-list" id="statsList">
+                            <!-- Las stats se insertarán aquí con JS -->
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Sección de Movimientos (ancho completo) -->
+                <section class="moves-section">
+                    <h3>Movimientos</h3>
+                    <div class="moves-grid" id="movesGrid">
+                        <!-- Los movimientos se insertarán aquí con JS -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </dialog>
 
     <script src="card.js"></script>
     <script src="app.js"></script>

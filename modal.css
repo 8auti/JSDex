@@ -1,0 +1,457 @@
+/* ========================================
+   MODAL DIALOG STYLES
+   ======================================== */
+
+/* Reset del dialog - CENTRADO */
+#modal {
+    border: none;
+    padding: 0;
+    max-width: 1200px;
+    width: 90vw;
+    max-height: 90vh;
+    border-radius: 20px;
+    overflow: hidden;
+    
+    /* Transparencia y blur en el contenedor */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    
+    /* CENTRADO */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+/* Backdrop (fondo oscuro con blur) */
+#modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Animación al abrir */
+#modal[open] {
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* ========================================
+   MODAL CONTENT
+   ======================================== */
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   BOTÓN CERRAR - FUERA DEL HEADER
+   ======================================== */
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 100;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: rotate(90deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   HEADER DEL MODAL
+   ======================================== */
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 60px 20px 40px; /* Más padding a la derecha para el botón */
+    background: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.modal-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    text-transform: capitalize;
+    color: #333;
+}
+
+.modal-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #999;
+}
+
+/* ========================================
+   BODY DEL MODAL
+   ======================================== */
+
+.modal-body {
+    padding: 30px 40px;
+    overflow-y: scroll;
+    flex: 1;
+    max-height: calc(90vh - 100px); /* Altura del viewport menos header */
+}
+
+/* Grid de 3 columnas */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+/* ========================================
+   COLUMNA 1: IMAGEN Y TIPOS
+   ======================================== */
+
+.image-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.modal-image {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.type-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: white;
+}
+
+/* Colores de tipos Pokemon */
+.badge-type-normal { background: #A8A878; }
+.badge-type-fire { background: #F08030; }
+.badge-type-water { background: #6890F0; }
+.badge-type-electric { background: #F8D030; }
+.badge-type-grass { background: #78C850; }
+.badge-type-ice { background: #98D8D8; }
+.badge-type-fighting { background: #C03028; }
+.badge-type-poison { background: #A040A0; }
+.badge-type-ground { background: #E0C068; }
+.badge-type-flying { background: #A890F0; }
+.badge-type-psychic { background: #F85888; }
+.badge-type-bug { background: #A8B820; }
+.badge-type-rock { background: #B8A038; }
+.badge-type-ghost { background: #705898; }
+.badge-type-dragon { background: #7038F8; }
+.badge-type-dark { background: #705848; }
+.badge-type-steel { background: #B8B8D0; }
+.badge-type-fairy { background: #EE99AC; }
+
+.pokemon-cry {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+}
+
+/* ========================================
+   COLUMNA 2: HABILIDADES Y DIMENSIONES
+   ======================================== */
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.info-section h3 {
+    font-size: 1.3rem;
+    margin: 0 0 10px 0;
+    color: #333;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 8px;
+}
+
+.abilities {
+    display: flex;
+    flex-direction: column;
+}
+
+.abilities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.abilities-list li {
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+    border-radius: 8px;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.dimensions {
+    display: flex;
+    flex-direction: column;
+}
+
+.dimensions h3 {
+    font-size: 1.3rem;
+    margin: 0 0 10px 0;
+    color: #333;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 8px;
+}
+
+.dimensions-list {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px 15px;
+    margin: 0;
+}
+
+.dimensions-list dt {
+    font-weight: bold;
+    color: #666;
+}
+
+.dimensions-list dd {
+    margin: 0;
+    color: #333;
+}
+
+/* ========================================
+   COLUMNA 3: STATS
+   ======================================== */
+
+.stats-section h3 {
+    font-size: 1.3rem;
+    margin: 0 0 15px 0;
+    color: #333;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 8px;
+}
+
+.stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.stat-item {
+    display: grid;
+    grid-template-columns: 80px 1fr 50px;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #666;
+    text-transform: capitalize;
+}
+
+.stat-bar-container {
+    height: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.stat-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.stat-number {
+    font-weight: bold;
+    color: #333;
+    text-align: right;
+}
+
+/* ========================================
+   MOVIMIENTOS (ANCHO COMPLETO)
+   ======================================== */
+
+.moves-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.moves-section h3 {
+    font-size: 1.3rem;
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+.moves-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.badge-move {
+    padding: 8px 12px;
+    background: rgba(102, 126, 234, 0.2);
+    color: #667eea;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    text-transform: capitalize;
+    transition: all 0.2s ease;
+}
+
+.badge-move:hover {
+    background: rgba(102, 126, 234, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   SCROLLBAR PERSONALIZADA
+   ======================================== */
+
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 1024px) {
+    #modal {
+        width: 95vw;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .stats-section {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    #modal {
+        width: 95vw;
+        max-height: 95vh;
+    }
+    
+    .close-btn {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+    }
+    
+    .modal-header {
+        padding: 20px 50px 15px 20px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .pokemon-name {
+        font-size: 1.5rem;
+    }
+    
+    .pokemon-number {
+        font-size: 1.2rem;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .moves-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    
+    .stat-item {
+        grid-template-columns: 70px 1fr 40px;
+    }
+}

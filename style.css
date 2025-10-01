@@ -2,13 +2,12 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* ----- BODY CON FONDO GRADIENTE ----- */
 body {
-    background: linear-gradient(135deg, #6a00f4, #b600e0);
+    background: linear-gradient(135deg, #4c00b0, #29005b);
     color: white;
     min-height: 100vh;
     display: flex;
@@ -17,6 +16,7 @@ body {
 
 /* ----- MAIN CONTENT ----- */
 main {
+    margin-top: 8rem;
     flex-grow: 1;
     padding: 2rem;
     text-align: center;
@@ -24,7 +24,7 @@ main {
 
 h1 {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
 }
 
 /* ----- POKEMON GRID Y CARDS ----- */
@@ -35,27 +35,9 @@ h1 {
     margin-top: 2rem;
 }
 
-/* ----- BOTÓN CARGAR MÁS ----- */
-.load-more {
-    margin-top: 2rem;
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    background-color: #00bcd4;
-    border: none;
-    border-radius: 12px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
 
-.load-more:hover {
-    background-color: #0097a7;
-}
-
-
-.pokemon-card {
-        background-color: rgba(255, 255, 255, 0.01);
+    .pokemon-card {
+        background-color: rgba(255, 255, 255, 0.1);
         border-radius: 16px;
         padding: 1.5rem;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -111,7 +93,25 @@ h1 {
         margin: 0;
     }
 
-    /* ----- FOOTER ----- */
+/* ----- BOTÓN CARGAR MÁS ----- */
+.load-more {
+    margin-top: 2rem;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    background-color: #00bcd4;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.load-more:hover {
+    background-color: #0097a7;
+}
+
+/* ----- FOOTER ----- */
 .site-footer {
     background-color: #fff;
     padding: 2rem 3rem;
@@ -172,11 +172,15 @@ h1 {
 }
 
 header {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 100%;
     padding: 1rem 2rem;
     display: flex;
+    position: fixed;
+    z-index: 10;
     justify-content: space-between;
     align-items: center;
+    backdrop-filter: blur(10px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
@@ -234,13 +238,6 @@ header {
 #nombre-principal:hover {
     color: #aba5ff;
     text-decoration: underline;
-}header {
-    background-color: rgba(0, 0, 0, 0);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .logo {

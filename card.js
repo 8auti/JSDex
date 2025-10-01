@@ -12,7 +12,7 @@ const createCard = (pokemon) => {
 
     const cardHTML = 
     `
-        <div class="pokemon-card">
+        <div class="pokemon-card" onclick="openModalWithId(${pokemon.id})">
             <img src="${pokemon.sprites.other['home'].front_default}" alt="${pokemon.name}">
             <div class="pokemon-number">#${formattedId}</div>
             <p>${pokemon.name}</p>
