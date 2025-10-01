@@ -1,58 +1,20 @@
 
-let loadedPokemon = []
-let loadAmount = 6
-
-async function fetchData(identifier){
-    try{
-
-        // Puede ser el numero o nombre
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${identifier}`)
-        
-        // Si el recurso no se pudo obtener
-        if(!response.ok){
-            throw new Error("No se pudo obtener el recurso")
-        }
-
-        const data = await response.json()
-        return data
-    }
-    catch(error){
-        console.error(error)
-    }
-}
-
-async function searchPokemon(){
-    const pokemonName = document.getElementById("searchInput").value.toLowerCase()
-    if (pokemonName != ''){
-        const pokemon = await fetchData(pokemonName)
-        console.log(pokemon)
-
-        if (pokemon) {
-            openModalWithPokemon(pokemon)
-        } else {
-            alert('No se pudo encontrar el pokemon!')
-        }
-    }
-}
-
-async function loadMorePokemon(){
-    let loaded = loadedPokemon.length
-    const limit = loaded + loadAmount;
-    for (loaded; loaded < limit; loaded++) {
-        const pokemon = await fetchData(loaded+1)
-
-        if(pokemon){
-            loadedPokemon.push(pokemon)
-            createCard(pokemon)
-        }
-    }
-}
-
 const myModal = document.getElementById("modal");
+let modalPokemon
+let shinyView = false
 
-function openModal(pokemon){
+async function openModal(pokemon){
     myModal.showModal()
-    fillModalWithPokemonData(pokemon)
+    fillModal(pokemon)
+    const pokemonSpecies = await fetchSpecies(pokemon.name)
+    console.log(pokemonSpecies);
+    
+    modalPokemon = pokemon
+    shinyView = false
+}
+
+function closeModal(){
+    myModal.close()
 }
 
 function openModalWithId(id){
@@ -68,12 +30,14 @@ function openModalWithPokemon(pokemon){
     }
 }
 
-function closeModal(){
-    myModal.close()
+function toggleShiny(){
+    shinyView = !shinyView
+    const sprites = modalPokemon.sprites.other['home']
+    document.getElementById('pokemonImg').src = shinyView ? sprites.front_shiny : sprites.front_default
 }
 
 // Función para llenar el modal con los datos
-function fillModalWithPokemonData(pokemon) {
+function fillModal(pokemon) {
     // Nombre y número
     document.getElementById('pokemonName').textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     document.getElementById('pokemonNumber').textContent = `#${String(pokemon.id).padStart(4, '0')}`;
@@ -141,5 +105,3 @@ function fillModalWithPokemonData(pokemon) {
     }).join('');
     document.getElementById('movesGrid').innerHTML = movesHTML;
 }
-
-loadMorePokemon()

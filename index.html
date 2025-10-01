@@ -51,7 +51,7 @@
     </footer>
 
     <!-- Modal Overlay -->
-    <dialog class="modal-overlay" id="modal" onclick="closeModalOnOutside(event)">
+    <dialog class="modal-overlay" id="modal">
         <!-- Modal Content -->
         <div class="modal-content">
             <!-- Botón Cerrar -->
@@ -69,6 +69,13 @@
                 <div class="info-grid">
                     <!-- Columna 1: Imagen y Tipos -->
                     <section class="image-section">
+                        
+                            <!-- Nueva barra de iconos -->
+                            <div class="icon-bar">
+                                <button onclick="toggleShiny()" class="icon-btn">
+                                    <img src="img/shiny-stars.png" alt="Shiny View">
+                                </button>
+                            </div>
                         <div class="modal-image">
                             <img id="pokemonImg" src="" alt="Pokemon">
                         </div>
@@ -122,7 +129,9 @@
         </div>
     </dialog>
 
-    <script src="card.js"></script>
-    <script src="app.js"></script>
+    <script src="/js/card.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/modal.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
